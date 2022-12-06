@@ -1,1 +1,0 @@
-# mobile-my-tinerary-maricas-1.2
