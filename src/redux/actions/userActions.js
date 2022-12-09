@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
-import { DB_LINK } from "../../url";
+import { DB_LINK } from "../../../url";
 
 const login = createAsyncThunk('login user', async (data) => {
     try {
@@ -8,12 +8,13 @@ const login = createAsyncThunk('login user', async (data) => {
         if (user.data.success) {
             return {
                 success: true,
-                response: user.data.response
+                response: user.data.response,
+                message: user.data.message
             }
         } else {
             return {
                 success: false,
-                response: user.data.message
+                response: user.data.message[0]
             }
         }
     } catch (error) {
@@ -65,7 +66,6 @@ const logout = createAsyncThunk('logout', async (token) => {
 const updateMyProfile = createAsyncThunk("updateMyProfile", async (data) => {
     try {
         const response = await axios.patch(`${DB_LINK}api/auth/me/${data.id}`, data.user);
-        console.log(response.data.response)
         return response.data.response;
     }
     catch (error) {

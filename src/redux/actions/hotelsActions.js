@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { DB_LINK } from "../../url";
+import { DB_LINK } from "../../../url";
 
 const getHotels = createAsyncThunk('getHotels', async () => {
     try {

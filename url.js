@@ -1,0 +1,1 @@
+export const DB_LINK = 'https://back-maricas-1-2.onrender.com/'

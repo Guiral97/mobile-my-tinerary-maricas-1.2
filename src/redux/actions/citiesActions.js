@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { DB_LINK } from "../../url";
+import { DB_LINK } from "../../../url";
 
 const getCities = createAsyncThunk("getCities",async ()=>{
     const response = await axios.get(`${DB_LINK}api/cities`);
@@ -14,7 +14,7 @@ const getItineraries = createAsyncThunk("getItineraries",async ()=>{
 
 const getContinentCities = createAsyncThunk('getContinentCities', async (data) => {
     try {
-        const response = await axios.get(`${DB_LINK}api/cities?${data.continents}&name=${data.search}`)
+        const response = await axios.get(`${DB_LINK}api/cities?name=${data.search}`)
         let info = {
             response: response.data.response,
             search: data.search,
@@ -101,7 +101,6 @@ const updateMyCity = createAsyncThunk("updateMyCity",async ({data, token})=>{
             payload: 'An error has ocurred'
         }
     }
-    
 });
 const getMyTineraries = createAsyncThunk("getMyTineraries",async (id)=>{
     try{

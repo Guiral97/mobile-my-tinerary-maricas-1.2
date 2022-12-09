@@ -1,24 +1,21 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Stack from './src/navigation/Stack';
+import { Provider } from 'react-redux';
+import rootReducer from './src/redux/reducers/rootReducer';
+import { configureStore } from '@reduxjs/toolkit'
+
+const store = configureStore({ reducer: rootReducer })
 
 export default function App() {
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>My Tinerary</Text>
-            <StatusBar style="auto" />
-        </View>
+        <Provider store={store}>
+            <NavigationContainer>
+                <StatusBar style="auto" />
+                <Stack />
+            </NavigationContainer>
+        </Provider>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#2596be',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 50,
-    }
-});
